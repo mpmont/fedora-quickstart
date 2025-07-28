@@ -48,8 +48,47 @@ else
   echo "⏭️ Skipping Flatpak application installation."
 fi
 
+# Install DNF packages (mandatory)
+echo ""
+echo "📦 The following DNF packages will now be installed:"
+cat <<EOF
+  - alacritty
+  - btop
+  - cmake
+  - cmatrix
+  - docker-ce
+  - docker-ce-cli
+  - docker-compose-plugin
+  - fastfetch
+  - fish
+  - gcc
+  - gcc-c++
+  - genisoimage
+  - git
+  - gnome-boxes
+  - htop
+  - httpd
+  - inotify-tools
+  - make
+  - mpv
+  - mysql-workbench-community
+  - nginx-filesystem
+  - nodejs
+  - obs-studio
+  - php
+  - php-fpm
+  - python3.12
+  - solaar
+  - tldr
+  - tlp
+  - vlc
+  - yt-dlp
+EOF
+
+echo "🔧 Installing DNF packages..."
+bash "$SCRIPTS_DIR/install_packages.sh"
+
 # Future steps:
-# bash "$SCRIPTS_DIR/install_packages.sh"
 # bash "$SCRIPTS_DIR/configure_shell.sh"
 
 echo ""
