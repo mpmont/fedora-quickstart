@@ -88,6 +88,19 @@ EOF
 echo "🔧 Installing DNF packages..."
 bash "$SCRIPTS_DIR/install_packages.sh"
 
+# Ask if user wants to install Sublime Text and configure it
+echo ""
+echo "🖋️ Sublime Text Editor setup is available with themes, plugins and user settings."
+
+read -rp "➡ Do you want to install and configure Sublime Text? (y/n): " INSTALL_SUBLIME
+
+if [[ "$INSTALL_SUBLIME" =~ ^[Yy]$ ]]; then
+  echo "🔧 Installing Sublime Text and applying user configuration..."
+  bash "$SCRIPTS_DIR/install_sublime_text.sh"
+else
+  echo "⏭️ Skipping Sublime Text installation."
+fi
+
 # Future steps:
 # bash "$SCRIPTS_DIR/configure_shell.sh"
 

@@ -1,0 +1,16 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+    "show_view_status": false,
+    "show_diagnostics_panel_on_save": 1,
+    "diagnostics_delay_ms": 10,
+    "show_code_actions": "bulb",
+    "show_references_in_quick_panel": true,
+    "clients": {
+        "phpactor": {
+            "enabled": true,
+            "command": ["/usr/local/bin/phpactor", "language-server"],
+            "selector": "source.php"
+        }
+    }
+}
+
