@@ -15,6 +15,10 @@ fedora-quickstart/
 └── scripts/
     ├── install_flatpaks.sh        # Installs user-selected Flatpak applications
     ├── install_packages.sh        # Installs essential system packages via DNF
+    ├── install_sublime.sh         # Installs Sublime Text, plugins and personal settings
+    ├── install_fonts_core.sh      # Installs Microsoft Core Fonts
+    ├── install_fonts_google.sh    # Installs Google Fonts collection
+    ├── install_fonts_adobe.sh     # Installs Adobe Fonts collection
     └── system_update.sh           # Updates system and installs basic CLI tools
 ```
 
@@ -40,7 +44,11 @@ sudo ./install.sh
 - Performs:
   1. System update
   2. (Prompt) Installation of Flatpak apps
-  3. (Always) Installation of essential DNF packages
+  3. (Prompt) Installation of Sublime Text + settings
+  4. (Prompt) Installation of Microsoft Fonts
+  5. (Prompt) Installation of Google Fonts
+  6. (Prompt) Installation of Adobe Fonts
+  7. (Always) Installation of essential DNF packages
 
 ---
 
@@ -123,6 +131,33 @@ yt-dlp
 
 ---
 
+### ✅ `scripts/install_sublime.sh`
+
+- Adds the Sublime Text official repo
+- Installs Sublime Text
+- Installs **Package Control**
+- Installs personal packages:
+  - Material Theme
+  - Material Theme - Docs
+  - LSP
+  - phpfmt
+- Copies your custom Sublime settings from `settings/`:
+  - `Preferences.sublime-settings`
+  - `LSP.sublime-settings`
+  - `phpfmt.sublime-settings`
+
+---
+
+### ✅ Fonts Setup
+
+Each font installer script can be optionally executed during `install.sh`:
+
+- `install_fonts_core.sh` — Installs Microsoft Core Fonts via RPM
+- `install_fonts_google.sh` — Installs latest Google Fonts (downloads and unzips to local fonts dir)
+- `install_fonts_adobe.sh` — Installs Adobe Source font families via Git
+
+---
+
 ## 🧩 Upcoming Additions
 
 - `configure_shell.sh` (custom aliases, PS1, shell options)
@@ -135,4 +170,4 @@ yt-dlp
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache License](LICENSE).

@@ -101,8 +101,42 @@ else
   echo "⏭️ Skipping Sublime Text installation."
 fi
 
-# Future steps:
-# bash "$SCRIPTS_DIR/configure_shell.sh"
+# Ask if user wants to install Microsoft Fonts
+echo ""
+echo "🖋️ You can optionally install Microsoft Core Fonts (Arial, Times New Roman, etc.)"
+read -rp "➡ Do you want to install Microsoft Fonts? (y/n): " INSTALL_FONTS
+
+if [[ "$INSTALL_FONTS" =~ ^[Yy]$ ]]; then
+  echo "🔧 Installing Microsoft Fonts..."
+  bash "$SCRIPTS_DIR/install_microsoft_fonts.sh"
+else
+  echo "⏭️ Skipping Microsoft Fonts installation."
+fi
+
+# Ask if user wants to install Google Fonts
+echo ""
+echo "🔤 You can optionally install the full Google Fonts collection (~600MB)"
+read -rp "➡ Do you want to install Google Fonts? (y/n): " INSTALL_GOOGLE_FONTS
+
+if [[ "$INSTALL_GOOGLE_FONTS" =~ ^[Yy]$ ]]; then
+  echo "🔧 Installing Google Fonts..."
+  bash "$SCRIPTS_DIR/install_google_fonts.sh"
+else
+  echo "⏭️ Skipping Google Fonts installation."
+fi
+
+# Ask if user wants to install Adobe Fonts
+echo ""
+echo "🅰️ You can optionally install Adobe's open source fonts (Source Sans, Serif, Code Pro)"
+read -rp "➡ Do you want to install Adobe Fonts? (y/n): " INSTALL_ADOBE_FONTS
+
+if [[ "$INSTALL_ADOBE_FONTS" =~ ^[Yy]$ ]]; then
+  echo "🔧 Installing Adobe Fonts..."
+  bash "$SCRIPTS_DIR/install_adobe_fonts.sh"
+else
+  echo "⏭️ Skipping Adobe Fonts installation."
+fi
+
 
 echo ""
 echo "✅ Initial setup completed!"
