@@ -97,7 +97,7 @@ if [[ "$INSTALL_CODECS" =~ ^[Yy]$ ]]; then
   color_echo "yellow" "Installing AMD Hardware Accelerated Codecs..."
   bash "$SCRIPTS_DIR/install_codecs.sh"
 else
-  echo "⏭️ Skipping Sublime Text installation."
+  echo "⏭️ Skipping Install Hardware Accelerated Codecs installation."
 fi
 
 # Ask if user wants to install Microsoft Fonts
