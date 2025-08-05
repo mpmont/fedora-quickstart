@@ -2,11 +2,18 @@
 
 # system_update.sh - Updates the system and installs base tools
 
-echo "🔄 Updating package repositories..."
+color_echo "yellow" "Updating package repositories..."
 dnf update -y
 
-echo "📦 Installing essential tools..."
-dnf install -y curl wget git vim nano unzip htop neofetch
+# System Config
+# Optimize DNF package manager for faster downloads and efficient updates
+color_echo "yellow" "Configuring DNF Package Manager..."
+backup_file "/etc/dnf/dnf.conf"
+echo "max_parallel_downloads=10" | tee -a /etc/dnf/dnf.conf > /dev/null
+dnf -y install dnf-plugins-core
+
+color_echo "yellow" "Installing essential tools..."
+dnf install -y curl wget git vim nano unzip htop
 
 # Optional: Update Flatpak apps if Flatpak is installed
 if command -v flatpak &>/dev/null; then
@@ -14,4 +21,4 @@ if command -v flatpak &>/dev/null; then
   flatpak update -y
 fi
 
-echo "✅ System update and essential tools installation complete."
+color_echo "green" "System update and essential tools installation complete."
