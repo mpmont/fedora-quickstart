@@ -6,7 +6,7 @@
 
 # Ensure the script is run as root
 if [[ "$EUID" -ne 0 ]]; then
-  echo "Please run this script with sudo or as root."
+  echo_color "red" "Please run this script with sudo or as root."
   exit 1
 fi
 
@@ -14,15 +14,15 @@ fi
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 SCRIPTS_DIR="$BASE_DIR/scripts"
 
-echo "▶ Starting Fedora setup automation"
+echo_color "green" " Starting Fedora setup automation"
 
 # Run system update
-echo "➡ Updating system packages..."
+echo_color "yellow" "Updating system packages..."
 bash "$SCRIPTS_DIR/system_update.sh"
 
 # Ask if user wants to install Flatpak apps
 echo ""
-echo "📦 The following Flatpak apps can be installed:"
+echo_color "yellow" " The following Flatpak apps can be installed:"
 cat <<EOF
   - com.anydesk.Anydesk
   - com.brave.Browser
@@ -42,15 +42,15 @@ EOF
 read -rp "➡ Do you want to install these Flatpak apps? (y/n): " INSTALL_FLATPAKS
 
 if [[ "$INSTALL_FLATPAKS" =~ ^[Yy]$ ]]; then
-  echo "🔧 Installing Flatpak applications..."
+  echo_color "yellow" "Installing Flatpak applications..."
   bash "$SCRIPTS_DIR/install_flatpaks.sh"
 else
-  echo "⏭️ Skipping Flatpak application installation."
+  echo_color "green" "Skipping Flatpak application installation."
 fi
 
 # Install DNF packages (mandatory)
 echo ""
-echo "📦 The following DNF packages will now be installed:"
+echo_color "yellow" "The following DNF packages will now be installed:"
 cat <<EOF
   - alacritty
   - btop
@@ -88,15 +88,14 @@ EOF
 echo "🔧 Installing DNF packages..."
 bash "$SCRIPTS_DIR/install_packages.sh"
 
-# Ask if user wants to install Sublime Text and configure it
+# Ask if user wants to install Hardware Accelerated Codecs for AMD GPUs. This improves video playback and encoding performance on systems with AMD graphics.
 echo ""
-echo "🖋️ Sublime Text Editor setup is available with themes, plugins and user settings."
 
-read -rp "➡ Do you want to install and configure Sublime Text? (y/n): " INSTALL_SUBLIME
+read -rp "Install Hardware Accelerated Codecs for AMD GPUs. This improves video playback and encoding performance on systems with AMD graphics? (y/n): " INSTALL_CODECS
 
-if [[ "$INSTALL_SUBLIME" =~ ^[Yy]$ ]]; then
-  echo "🔧 Installing Sublime Text and applying user configuration..."
-  bash "$SCRIPTS_DIR/install_sublime_text.sh"
+if [[ "$INSTALL_CODECS" =~ ^[Yy]$ ]]; then
+  color_echo "yellow" "Installing AMD Hardware Accelerated Codecs..."
+  bash "$SCRIPTS_DIR/install_codecs.sh"
 else
   echo "⏭️ Skipping Sublime Text installation."
 fi

@@ -15,7 +15,7 @@ fedora-quickstart/
 └── scripts/
     ├── install_flatpaks.sh        # Installs user-selected Flatpak applications
     ├── install_packages.sh        # Installs essential system packages via DNF
-    ├── install_sublime.sh         # Installs Sublime Text, plugins and personal settings
+    ├── install_codecs.sh          # Install Hardware Accelerated Codecs for AMD GPUs. This improves video playback and encoding performance on systems with AMD graphics.
     ├── install_fonts_core.sh      # Installs Microsoft Core Fonts
     ├── install_fonts_google.sh    # Installs Google Fonts collection
     ├── install_fonts_adobe.sh     # Installs Adobe Fonts collection
@@ -64,7 +64,6 @@ vim
 nano
 unzip
 htop
-neofetch
 ```
 
 ---
@@ -131,20 +130,10 @@ yt-dlp
 
 ---
 
-### ✅ `scripts/install_sublime.sh`
+### ✅ `scripts/install_codecs.sh`
 
-- Adds the Sublime Text official repo
-- Installs Sublime Text
-- Installs **Package Control**
-- Installs personal packages:
-  - Material Theme
-  - Material Theme - Docs
-  - LSP
-  - phpfmt
-- Copies your custom Sublime settings from `settings/`:
-  - `Preferences.sublime-settings`
-  - `LSP.sublime-settings`
-  - `phpfmt.sublime-settings`
+- Enable RPM Fusion repositories to access additional software packages and codecs
+- Install Hardware Accelerated Codecs for AMD GPUs. This improves video playback and encoding performance on systems with AMD graphics.
 
 ---
 
